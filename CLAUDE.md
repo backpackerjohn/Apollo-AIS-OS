@@ -18,3 +18,7 @@ No trigger, no entry. Log facts, not self-assessment. Log it, then continue the 
 ## Agents & Skills
 
 <!-- Your routing table goes here -->
+
+## Your Skills
+
+/house-style — call when Stephen asks to format a skill or sub-agent.
