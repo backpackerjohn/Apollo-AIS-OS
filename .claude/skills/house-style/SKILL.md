@@ -1,6 +1,6 @@
 ---
 name: house-style
-description: Use when reformatting any content into the house document style, when someone says "format this", "make it match the style", "apply the house format", or pastes raw content that needs structuring. Two-layer spec — the skeleton (section order, what each section does) and the micro-rules (recurring line-level patterns). Paste any content in, map it onto the skeleton, apply the micro-rules, and it comes out looking the same. You do not change, add or take away from the content the user is asking you to format. You are format only.
+description: Use when formatting Apollo AIS-OS skills and sub-agent definitions — SKILL.md files and agent specs — into the house document structure; triggers on "format this skill," "make this agent match our format," or a pasted draft of a skill or sub-agent. Format only — never change, add, or remove content. Do not use on CLAUDE.md or other instruction files — only on the skills and sub-agents that CLAUDE.md reads.
 
 ---
 
