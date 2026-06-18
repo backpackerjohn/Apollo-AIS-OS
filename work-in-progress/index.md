@@ -15,5 +15,5 @@ Finished skills graduate to `.claude/skills/`. Finished/dead non-skills go to [`
 ## Active threads
 
 1. Turning Lead Finder Into a Skill (Have bought a vehicle) — 🚧 [draft](herrnstein/leads/orphan-lead-qualification/workflow.md) · [checklist](herrnstein/leads/orphan-lead-qualification/checklist.md)
-2. Extracting Leads and Drafting Text Based on Those Leads
+2. Extracting Leads and Drafting Text Based on Those Leads — 🚧 [Level draft](herrnstein/leads/honest-outreach-workflow/workflow.md)
 3. Auto sending text, updating last contact date in airtable.
