@@ -57,9 +57,7 @@ Any name in "Working With" that is not on this list is an inactive/unknown rep �
 
 ## Part A — Build & Run the Search
 
-Open Dealerpeak.
-
-In the top nav bar, hover Customer → click Advanced Search.
+Open Dealerpeak at this URL: https://herrnsteinhyundai.dealerpeak.net/?fuseaction=CRM.Default — it lands you directly on Advanced Search.
 
 Who: change from "Me" to All Customers / Entire Database.
 
