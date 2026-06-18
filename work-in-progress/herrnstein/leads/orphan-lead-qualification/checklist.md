@@ -1,6 +1,15 @@
+---
+area: herrnstein
+category: leads
+type: checklist
+status: building
+updated: 2026-06-18
+tags: [leads, dealerpeak, hyundai, airtable]
+---
+
 # Checklist — Orphan Lead Qualification & Extraction
 
-> Skill draft: [`workflow.md`](./workflow.md) · Master list: item 1 in [`Currently working on.md`](../../Currently%20working%20on.md)
+> Skill draft: [`workflow.md`](./workflow.md) · Master list: item 1 in [`index.md`](../../../index.md)
 
 ## Build
 
@@ -20,4 +29,4 @@
 - [ ] Run `/house-style` on `workflow.md`
 - [ ] Move to `.claude/skills/orphan-lead-qualification/SKILL.md`
 - [ ] Add to Agents & Skills in `CLAUDE.md`
-- [ ] Check off item 1 in `Currently working on.md`
+- [ ] Check off item 1 in `index.md`
