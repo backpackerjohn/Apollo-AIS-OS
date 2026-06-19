@@ -1,6 +1,6 @@
 ---
 name: lead-outreach
-description: Use when Stephen wants outreach drafts for qualified leads of a given vehicle model — "pull the uncontacted Tucson leads", "fill this template for 10 Elantra owners", or any time a model name is paired with a pasted message template. Reads the Qualified Leads base, filters to uncontacted leads of that model, and returns a copy-ready phone number and filled template per lead.
+description: Use when Stephen wants outreach drafts for qualified leads of a given vehicle model — "give me 20 Elantra leads I haven't contacted yet", "12 Tucson leads I haven't contacted in over 30 days", or any time a model name is paired with a pasted message template. Reads the Qualified Leads base, selects leads of that model never contacted (or not contacted within N days), and returns a copy-ready phone number and filled template per lead.
 ---
 
 ## What this does
@@ -35,20 +35,23 @@ The point is zero friction at the moment of sending. No reformatting a phone num
 
 ### Step 1: Read the invocation
 
-From the chat, pull three things:
+From the chat, pull four things:
 
 - **Model** — the vehicle model to filter on (e.g. `Tucson`, `Elantra`). Match case-insensitively against the Model field.
 - **Count** — how many leads to output. If no number is given, **default to 10**.
+- **Recency window (optional)** — if the ask is "haven't contacted in over **N** days" (or similar), capture N. If it's just "haven't contacted yet" / "not contacted," there's no window — never-contacted only. Examples: *"give me 20 Elantra leads I haven't contacted yet"* → no window; *"12 Tucson leads I haven't contacted in over 30 days"* → N = 30.
 - **Template(s)** — the pasted message, using `[bracket]` tokens from the field-map table above. If more than one template is pasted, fill each lead against all of them (label which is which).
 
-### Step 2: Pull uncontacted leads of that model
+### Step 2: Select the leads to contact
 
-Query `tblB41Nl7nXfo3A0f` in base `appLQWoS1m6CPJo1g`. Keep only records where:
+Blank Last Contacted (`fldlK4htNjvSCvajw`) means **never contacted** — those are the priority. Two cohorts, by what was asked:
 
-1. Model (`fld7u3zjbgCXBanVQ`) equals the named model, **and**
-2. Last Contacted (`fldlK4htNjvSCvajw`) **is empty**.
+- **No window** ("haven't contacted yet") → leads where Last Contacted **is blank**.
+- **Window of N days** ("not contacted in over N days") → leads that are **either blank or** whose Last Contacted is **more than N days before today** (today − N; e.g. from 2026-06-19, "over 30 days" means a contact date on or before 2026-05-20). A lead contacted *within* the last N days is excluded.
 
-Filter on these two conditions (via the tool's structured `filters`: `=` on the model field, `isEmpty` on the date field), paging if needed. Take the first **N** matches (N = the count from Step 1). Sort oldest-created first so the longest-waiting leads go out first.
+Scope every query to the named Model (`fld7u3zjbgCXBanVQ`, case-insensitive) — filter that server-side. Apply the blank / recency test reliably (an `isEmpty` check, plus for a window a date cutoff at N days ago), paging through all matches before trimming.
+
+**Order — never-contacted first.** Put blank-Last-Contacted leads at the top (longest untouched), then the rest by Last Contacted **ascending** (oldest contact next). Take the first **N** after ordering.
 
 ### Step 3: Build the two outputs per lead
 
@@ -75,7 +78,7 @@ After all leads are printed, **ask** whether to mark this batch as contacted. On
 
 ## Verification
 
-- **Gate test**: every lead output has a blank Last Contacted. One contacted lead in the batch = fail.
+- **Gate test**: with no window, every lead has a blank Last Contacted. With an "over N days" window, every lead is either blank or last-contacted more than N days ago, and blanks are listed first. A lead contacted within the window = fail.
 - **Model test**: every lead's Model equals the named model. One stray model = fail.
 - **Copy test**: each phone box is pure digits and each template box has no unresolved `[tokens]`. One leak = fail.
 - **Count test**: at most N leads out (N = requested, default 10). More = fail.
