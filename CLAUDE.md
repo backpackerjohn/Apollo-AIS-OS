@@ -16,5 +16,7 @@ to `memory/routing-log.md` per its header. No trigger, no entry.
 ## Your Skills
 
 /house-style — call when Stephen asks to format a skill or sub-agent.
+
 /steward - call when user needs folders, or files organized.
+
 /lead-outreach - call when Stephen needs to reach out to leads
